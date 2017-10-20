@@ -64,30 +64,30 @@ class GlobalController extends Controller
         $email = \request('email');
         $password = \request('password');
         $id1['id'] = $get->where('email' , $email)->get()->pluck('id');
-        $role['role'] = $get->where('email' , $email)->get()->pluck('role');
-        $id2['id'] = $get->where('password' , $password)->get()->pluck('id');
+        $role['role'] = $get->where([['email' , $email],['password' , $password]])->get()->pluck('role');
+//        $id2['id'] = $get->where('password' , $password)->get()->pluck('id');
         $id0 = intval($id1);
-        $id_0 = intval($id2);
+//        $id_0 = intval($id2);
         $role = intval($role);
-        if($id0!=null ) {
-            if($id_0!=null) {
-                if ($id0 == $id_0) {
+//        dd($role);
+        if ($get->where ([['email' , $email],['password' , $password]])->get() != null) {
 //            $ses->add($id1['id']);
 //            echo $id1;
-                    if ($role == 1) {
-                        //user
-                        \request()->session()->put('id', $id0);
-                        \request()->session()->save();
-                    } elseif ($role == 0) {
-                        \request()->session()->put('admin_id', $id0);
-                        \request()->session()->save();
-                    }
-                    if (session('id') == $id0)
-                        return redirect('/user/index');
-                    elseif (session('admin_id') == $id0)
-                        return redirect('/admin/index');
-                }
+            if ($role == 1) {
+                //user
+//                        dd($get->where([['email' , $email],['password' , $password]])->get());
+                \request()->session()->put('id', $id0);
+                \request()->session()->save();
+            } elseif ($role == 0) {
+                \request()->session()->put('admin_id', $id0);
+                \request()->session()->save();
             }
+            if (session('id') == $id0)
+                return redirect('/user/index');
+            elseif (session('admin_id') == $id0)
+                return redirect('/admin/index');
+//                }
+//            }
         }
         else
         {

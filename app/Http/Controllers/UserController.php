@@ -160,7 +160,7 @@ class UserController extends Controller
     public function upload_photo()
     {
             $path = \request('id');
-
+            echo $path;
             $post = new photos;
             $post->photo_loc = $path;
             $post->user_id = \request()->session()->get('id');
