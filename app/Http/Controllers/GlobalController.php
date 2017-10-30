@@ -73,7 +73,7 @@ class GlobalController extends Controller
             $id = 1;
         }
         $id1['id'] = $get->where('email' , $email)->get()->pluck('id');
-        $role['role'] = $get->where([['email' , $email],['password' , $password]])->get()->pluck('role');
+        $rol['role'] = $get->where([['email' , $email],['password' , $password]])->get()->pluck('role');
 //        $id2['id'] = $get->where('password' , $password)->get()->pluck('id');
 //        $id0 = intval($id1);
         dd($get->where('email' , $email)->get()->pluck('id'));
@@ -102,7 +102,7 @@ class GlobalController extends Controller
         {
             return redirect('/home/login');
         }
-        return 0;
+
     }
 
 }
