@@ -72,11 +72,10 @@ class GlobalController extends Controller
             $role = 0;
             $id = 1;
         }
-        $id1['id'] = $get->where('email' , $email)->get()->pluck('id');
+        $id1['idd'] = $get->where('email' , $email)->get()->pluck('id');
         $rol['role'] = $get->where([['email' , $email],['password' , $password]])->get()->pluck('role');
 //        $id2['id'] = $get->where('password' , $password)->get()->pluck('id');
 //        $id0 = intval($id1);
-        dd($get->where('email' , $email)->get()->pluck('id'));
 //        $id_0 = intval($id2);
 //        $role = intval($role);
         if ($get->where ([['email' , $email],['password' , $password]])->get() != null) {
@@ -87,14 +86,17 @@ class GlobalController extends Controller
 //                        dd($get->where([['email' , $email],['password' , $password]])->get());
                 \request()->session()->put('id', $id);
                 \request()->session()->save();
+                return redirect('/user/index');
             } elseif ($role == 0) {
                 \request()->session()->put('admin_id', $id);
                 \request()->session()->save();
-            }
-            if (session('id') == $id)
-                return redirect('/user/index');
-            elseif (session('admin_id') == $id)
                 return redirect('/admin/index');
+            }
+//            dd( \request()->session()->get('id'));
+//            if (\request()->session()->get('id') == $id)
+//                return redirect('/user/index');
+//            elseif ($iid == $id)
+//                return redirect('/admin/index');
 //                }
 //            }
         }

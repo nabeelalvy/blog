@@ -53,6 +53,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/deleteuser', 'AdminController@delete_user');
     Route::get('/deletepcomment', 'AdminController@delete_p_comment');
     Route::get('/deletevcomment', 'AdminController@delete_v_comment');
+    Route::get('/logout', 'UserController@logout');
 });
 
 
